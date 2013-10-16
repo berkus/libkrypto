@@ -8,9 +8,9 @@
 //
 #include <openssl/sha.h>
 #include <openssl/err.h>
-#include "crypto/sha256_hash.h"
-#include "crypto/rsa160_key.h"
-#include "crypto/utils.h"
+#include "sha256_hash.h"
+#include "rsa160_key.h"
+#include "utils.h"
 #include "crypto.h"
 #include "byte_array.h"
 #include "byte_array_wrap.h"

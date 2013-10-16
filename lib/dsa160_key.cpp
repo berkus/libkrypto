@@ -7,9 +7,9 @@
 // (See file LICENSE_1_0.txt or a copy at http://www.boost.org/LICENSE_1_0.txt)
 //
 #include <openssl/sha.h>
-#include "crypto/sha256_hash.h"
-#include "crypto/dsa160_key.h"
-#include "crypto/utils.h"
+#include "sha256_hash.h"
+#include "dsa160_key.h"
+#include "utils.h"
 #include "crypto.h"
 #include "byte_array.h"
 #include "byte_array_wrap.h"

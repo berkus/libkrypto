@@ -1,4 +1,4 @@
-#include "crypto/sign_key.h"
+#include "sign_key.h"
 
 namespace ssu {
 namespace crypto {

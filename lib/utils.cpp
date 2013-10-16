@@ -1,4 +1,4 @@
-#include "crypto/utils.h"
+#include "utils.h"
 #include "byte_array.h"
 
 namespace ssu {
