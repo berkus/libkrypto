@@ -8,7 +8,6 @@
 //
 #include "sign_key.h"
 
-namespace ssu {
 namespace crypto {
 
 sign_key::sign_key()
@@ -19,4 +18,3 @@ sign_key::~sign_key()
 {}
 
 } // crypto namespace
-} // ssu namespace

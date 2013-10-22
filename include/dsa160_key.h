@@ -11,7 +11,6 @@
 #include <openssl/dsa.h>
 #include "sign_key.h"
 
-namespace ssu {
 namespace crypto {
 
 class dsa160_key : public sign_key
@@ -38,4 +37,3 @@ private:
 };
 
 } // crypto namespace
-} // ssu namespace

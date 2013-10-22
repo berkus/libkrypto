@@ -9,7 +9,7 @@
 #include "aes_128_ctr.h"
 #include "crypto.h"
 
-namespace ssu {
+namespace crypto {
 
 aes_128_ctr::aes_128_ctr(byte_array const& key)
 {
@@ -40,4 +40,4 @@ byte_array aes_128_ctr::encrypt(byte_array const& in, boost::array<uint8_t,AES_B
     return out;
 }
 
-} // ssu namespace
+} // crypto namespace

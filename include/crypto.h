@@ -50,7 +50,6 @@
 #error OpenSSL 1.0.0 or later is required for PKCS5_PBKDF2_HMAC and EVP aes-128-gcm functions.
 #endif
 
-namespace ssu {
 namespace crypto {
 
 // Couple of sst-induced constants
@@ -318,4 +317,3 @@ private:
 };
 
 } // crypto namespace
-} // ssu namespace

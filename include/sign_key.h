@@ -12,7 +12,6 @@
 
 class byte_array;
 
-namespace ssu {
 namespace crypto {
 
 class secure_hash;
@@ -91,4 +90,3 @@ private:
 };
 
 } // crypto namespace
-} // ssu namespace

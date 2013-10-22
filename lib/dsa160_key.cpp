@@ -16,7 +16,6 @@
 #include "flurry.h"
 #include "logging.h"
 
-namespace ssu {
 namespace crypto {
 
 /*
@@ -395,4 +394,3 @@ dsa160_key::dump() const
 {}
 
 } // crypto namespace
-} // ssu namespace

@@ -13,7 +13,6 @@
 
 class byte_array;
 
-namespace ssu {
 namespace crypto {
 namespace utils {
 
@@ -23,12 +22,11 @@ byte_array bn2ba(BIGNUM const* bn);
 
 } // utils namespace
 } // crypto namespace
-} // ssu namespace
 
 // Flurry serialization helpers.
 inline flurry::oarchive& operator << (flurry::oarchive& oa, BIGNUM* const& num)
 {
-    oa << ssu::crypto::utils::bn2ba(num);
+    oa << crypto::utils::bn2ba(num);
     return oa;
 }
 
@@ -36,6 +34,6 @@ inline flurry::iarchive& operator >> (flurry::iarchive& ia, BIGNUM*& num)
 {
     byte_array ba;
     ia >> ba;
-    num = ssu::crypto::utils::ba2bn(ba);
+    num = crypto::utils::ba2bn(ba);
     return ia;
 }

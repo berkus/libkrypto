@@ -11,7 +11,6 @@
 #include "crypto.h"
 #include "byte_array.h"
 
-namespace ssu {
 namespace crypto {
 
 // A quick simple wrapper for instantly getting a sha-256 of a byte_array.
@@ -53,4 +52,3 @@ inline crypto::hash::value sha256::keyed_hash(byte_array const& key, byte_array 
 }
 
 } // crypto namespace
-} // ssu namespace

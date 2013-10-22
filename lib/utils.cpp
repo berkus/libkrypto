@@ -9,7 +9,6 @@
 #include "utils.h"
 #include "byte_array.h"
 
-namespace ssu {
 namespace crypto {
 namespace utils {
 
@@ -31,4 +30,3 @@ byte_array bn2ba(BIGNUM const* bn)
 
 } // utils namespace
 } // crypto namespace
-} // ssu namespace

@@ -17,7 +17,6 @@
 #include "flurry.h"
 #include "logging.h"
 
-namespace ssu {
 namespace crypto {
 
 rsa160_key::rsa160_key(RSA *rsa)
@@ -161,4 +160,3 @@ rsa160_key::dump() const
 {}
 
 } // crypto namespace
-} // ssu namespace

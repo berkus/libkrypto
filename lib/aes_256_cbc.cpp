@@ -9,7 +9,7 @@
 #include "aes_256_cbc.h"
 #include "crypto.h"
 
-namespace ssu {
+namespace crypto {
 
 aes_256_cbc::aes_256_cbc(type which, byte_array const& key)
 {
@@ -63,4 +63,4 @@ byte_array aes_256_cbc::decrypt(byte_array const& in)
     return out;
 }
 
-} // ssu namespace
+} // crypto namespace

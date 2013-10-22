@@ -11,7 +11,7 @@
 #include <openssl/aes.h>
 #include "byte_array.h"
 
-namespace ssu {
+namespace crypto {
 
 class aes_256_cbc
 {
@@ -31,4 +31,4 @@ public:
     byte_array decrypt(byte_array const& in);
 };
 
-} // ssu namespace
+} // crypto namespace

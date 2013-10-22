@@ -12,7 +12,7 @@
 #include <openssl/aes.h>
 #include "byte_array.h"
 
-namespace ssu {
+namespace crypto {
 
 /**
  * AES-128 block cipher, used in stream counter mode.
@@ -46,4 +46,4 @@ public:
     }
 };
 
-} // ssu namespace
+} // crypto namespace
