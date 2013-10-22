@@ -2,59 +2,8 @@ Description of cryptographic primitives used, ripped from TeleHash v2.md documen
 The crypto primitives are pretty much all the same between all of the existing
 p2p protocols, hence it might not even need much editing.
 
-Telehash v2 draft
-=================
-
-# Introduction
-
-> Note: This is the second major version of the Telehash protocol, the
-> first one is deprecated and was a minimal experimental spec 
-> to create a distributed hash table, it is a work in progress yet
-> and unstable!
-
-Telehash is a new encrypted mesh protocol enabling applications to
-find, identify, and communicate directly with each other.  It is built
-on public-key security (PKI) and fundamentally creates peer-to-peer
-(P2P) connections using a distributed hash-table (DHT) to form the
-mesh.
-
-As a protocol, it does not provide direct end-user functionality or
-application specifications. Instead, Telehash is primarily a tool for
-developers of specifications and of libraries/SDKs to use in creating
-modern applications which require rich experiences and private
-interconnectivity at scale.
-
-The principle idea that drove the creation and development of Telehash
-is the belief that any application instance should be able to easily and
-securely talk to any other application instance, whether they are two
-instances of the same application, or completely different
-applications. They should be able to do so directly, and in any
-environment, from servers to mobile devices down to embedded systems
-and sensors.
-
-By enabling this freedom for developers as a foundation for their
-applications, Telehash enables the same freedom for the people using
-them - that the user can connect, share, and communicate more easily
-and with control of their privacy.
-
-The challenges and complexity today in connecting applications via
-existing technologies such as APIs, OAuth, and REST is only increasing,
-often forcing fundamentally insecure, centralized, and closed/gated
-communication platforms.  By adopting Telehash in any application, that
-application immediately has a powerful set of open tools for not only
-its own needs, but can then also enable connectivity to and from
-applications created by others easily. These tools include the ability
-to have friends, sharing, feeds, tagging, search, notifications,
-discovery, and other social patterns.
-
-Telehash has a fundamental requirement to remain simple and
-light-weight in order to support applications running on networked
-devices and sensors. The design goals also include not forcing any
-particular architectural design such as client-server,
-centralized/federated/distributed, polling/push, REST, streaming,
-publish-subscribe, or message passing... any can be used, as Telehash
-simply facilitates secure connectivity between any two or more
-applications.
+Cryptographic primitives support
+================================
 
 # Protocol Details
 
