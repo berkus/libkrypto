@@ -55,10 +55,10 @@ namespace crypto {
 // Couple of sst-induced constants
 enum {
     // Length of symmetric key material for HMAC-SHA-256-128
-    HMACKEYLEN = (256/8),
-    // We use SHA-256 hashes for HMAC generation
-    HMACLEN    = (256/8),
-    SHA256_HASH_LEN = (256/8)
+    HMACKEYLEN = 32,
+    // We use SHA-256 or SHA-512-256 hashes for HMAC generation
+    HMACLEN    = 32,
+    SHA256_HASH_LEN = 32
 };
 
 namespace internal {
