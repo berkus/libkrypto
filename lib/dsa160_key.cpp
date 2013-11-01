@@ -287,6 +287,9 @@ dsa160_key::dsa160_key(int bits)
     int rc = DSA_generate_key(dsa_);
     assert(rc == 1);
     assert(dsa_->priv_key != nullptr);
+    if (rc != 1 or dsa_->priv_key == nullptr) {
+        throw std::runtime_error("Cannot generate DSA private key");
+    }
 
     set_type(public_and_private);
 }
