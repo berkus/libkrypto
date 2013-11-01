@@ -10,7 +10,7 @@
 #include "sha256_hash.h"
 #include "dsa160_key.h"
 #include "utils.h"
-#include "crypto.h"
+#include "krypto.h"
 #include "byte_array.h"
 #include "byte_array_wrap.h"
 #include "flurry.h"

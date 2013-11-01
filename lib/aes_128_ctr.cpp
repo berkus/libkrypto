@@ -8,7 +8,7 @@
 //
 #include <boost/asio/buffer.hpp>
 #include "aes_128_ctr.h"
-#include "crypto.h"
+#include "krypto.h"
 
 namespace crypto {
 
