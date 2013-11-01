@@ -42,7 +42,7 @@
 #include <openssl/hmac.h>
 #include <openssl/rand.h>
 
-#include <boost/array.hpp>
+#include <boost/tr1/array.hpp>
 #include <boost/utility.hpp>
 #include <boost/asio/buffer.hpp>
 

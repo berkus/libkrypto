@@ -8,7 +8,7 @@
 //
 #pragma once
 
-#include <boost/array.hpp>
+#include <boost/tr1/array.hpp>
 #include <openssl/aes.h>
 #include "byte_array.h"
 
