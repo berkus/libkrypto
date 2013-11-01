@@ -18,7 +18,9 @@ aes_128_ctr::aes_128_ctr(byte_array const& key)
     assert(keysize == 128);
     int rc = AES_set_encrypt_key((const unsigned char*)key.const_data(), keysize, &key_);
     assert(rc == 0);
-    // @todo throw on error...
+    if (rc != 0) {
+        throw std::runtime_error("Cannot set AES encryption key");
+    }
 }
 
 aes_128_ctr::~aes_128_ctr()
