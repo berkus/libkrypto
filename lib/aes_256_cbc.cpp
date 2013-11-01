@@ -18,11 +18,17 @@ aes_256_cbc::aes_256_cbc(type which, byte_array const& key)
         assert(keysize == 128 or keysize == 192 or keysize == 256);
         int rc = AES_set_encrypt_key((const unsigned char*)key.const_data(), keysize, &key_);
         assert(rc == 0);
+        if (rc != 0) {
+            throw std::runtime_error("Cannot set AES-256-CBC encryption key");
+        }
     } else {
         int keysize = key.size() * 8;
         assert(keysize == 128 or keysize == 192 or keysize == 256);
         int rc = AES_set_decrypt_key((const unsigned char*)key.const_data(), keysize, &key_);
         assert(rc == 0);
+        if (rc != 0) {
+            throw std::runtime_error("Cannot set AES-256-CBC decryption key");
+        }
     }
 }
 
