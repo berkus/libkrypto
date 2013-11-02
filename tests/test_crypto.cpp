@@ -1,10 +1,13 @@
 /// Copyright (c) 2013, Aldrin's Notebook.
 /// http://opensource.org/licenses/BSD-2-Clause
+#define BOOST_TEST_MODULE Test_krypto_primitives
+#include <boost/test/unit_test.hpp>
+
 #include "krypto.h"
 
-void random_generation()
+BOOST_AUTO_TEST_CASE(random_generation)
 {
-  assert(crypto::prng_ok());                                       // check PRNG state
+  BOOST_CHECK(crypto::prng_ok());                                  // check PRNG state
 
   crypto::block buffer;                                            // use the convenience typedef
   crypto::fill_random(buffer);                                     // fill it with random bytes
@@ -14,7 +17,7 @@ void random_generation()
   crypto::fill_random(vec);                                        // fill it with random bytes
 }
 
-void key_generation()
+BOOST_AUTO_TEST_CASE(key_generation)
 {
   crypto::block key;                                               // 128 bit key
   crypto::block salt;                                              // 128 bit salt
@@ -23,7 +26,7 @@ void key_generation()
   crypto::cleanse(key);                                            // clear sensitive data
 }
 
-void message_digest()
+BOOST_AUTO_TEST_CASE(message_digest)
 {
   crypto::hash md;                                                 // the hash object
   crypto::hash::value sha;                                         // the hash value
@@ -32,7 +35,7 @@ void message_digest()
   md.finalize(sha);                                                // get digest value
 }
 
-void message_authentication_code()
+BOOST_AUTO_TEST_CASE(message_authentication_code)
 {
   crypto::block key;                                               // the hash key
   crypto::fill_random(key);                                        // random key will do for now
@@ -44,64 +47,46 @@ void message_authentication_code()
   crypto::cleanse(key);                                            // clear sensitive data
 }
 
-void encryption()
+BOOST_AUTO_TEST_CASE(encryption)
 {
   crypto::block iv;                                                // initialization vector
   crypto::block key;                                               // encryption key
   crypto::block seal;                                              // container for the seal
   crypto::fill_random(iv);                                         // random initialization vector
   crypto::fill_random(key);                                        // random key will do (for now)
-  unsigned char date[] = {14, 1, 13};                              // associated data
+  unsigned char data[] = {14, 1, 13};                              // associated data
   std::string text("can you keep a secret?");                      // message (plain-text)
   std::vector<unsigned char> ciphertext(text.size());              // container for encrypted data
   {
     crypto::cipher cipher(key, iv);                                // initialize cipher (encrypt mode)
-    cipher.associate_data(date);                                   // add associated data first
+    cipher.associate_data(data);                                   // add associated data first
     cipher.transform(text, ciphertext);                            // do transform (i.e. encrypt)
     cipher.seal(seal);                                             // get the encryption seal
   }
   std::vector<unsigned char> decrypted(ciphertext.size());         // container for decrypted data
   {
     crypto::cipher cipher(key, iv, seal);                          // initialize cipher (decrypt mode)
-    cipher.associate_data(date);                                   // add associated data first
+    cipher.associate_data(data);                                   // add associated data first
     cipher.transform(ciphertext, decrypted);                       // do transform (i.e. decrypt)
     cipher.verify();                                               // check the seal
   }
-  assert(std::equal(text.begin(), text.end(), decrypted.begin())); // sanity (decrypted == plaintext)
+  BOOST_CHECK(std::equal(text.begin(), text.end(), decrypted.begin())); // sanity (decrypted == plaintext)
 
-  date[0] = 15;                                                    // modify the associated data
+  data[0] = 15;                                                    // modify the associated data
   {
     crypto::cipher cipher(key, iv, seal);                          // initialize cipher (decrypt mode)
-    cipher.associate_data(date);                                   // add associated data first
+    cipher.associate_data(data);                                   // add associated data first
     cipher.transform(ciphertext, decrypted);                       // try decryption again
-    try
-    {
-      cipher.verify();                                             // should throw an exception
-      assert(false);                                               // should never be reached
-    }
-    catch (...) {}
+    BOOST_CHECK_THROW(cipher.verify(), std::runtime_error);
   }
 
-  date[0] = 14;                                                    // revert associated data
+  data[0] = 14;                                                    // revert associated data
   ciphertext[0] = '\0';                                            // modify ciphertext.
   {
     crypto::cipher cipher(key, iv, seal);                          // initialize cipher (decrypt mode)
-    cipher.associate_data(date);                                   // add associated data first
+    cipher.associate_data(data);                                   // add associated data first
     cipher.transform(ciphertext, decrypted);                       // try decryption again
-    try
-    {
-      cipher.verify();                                             // should throw an exception
-      assert(false);                                               // should never be reached
-    }
-    catch (...) {}
+    BOOST_CHECK_THROW(cipher.verify(), std::runtime_error);
   }
   crypto::cleanse(key);                                            // clear sensitive data
-}
-
-int main()
-{
-  random_generation();
-  key_generation();
-  message_digest();
-  encryption();
 }
