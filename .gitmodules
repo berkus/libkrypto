@@ -10,6 +10,3 @@
 [submodule "3rdparty/endian"]
 	path = 3rdparty/endian
 	url = https://berkus@github.com/berkus/endian.git
-[submodule "3rdparty/plist"]
-	path = 3rdparty/plist
-	url = https://berkus@github.com/berkus/PlistCpp.git
