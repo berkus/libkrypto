@@ -3,7 +3,7 @@ project(libkrypto)
 
 if (NOT BUILD_IN_METTANODE)
     include(cmake/setup.cmake)
-    include_directories(3rdparty/endian 3rdparty/support/include 3rdparty/plist/include)
+    include_directories(3rdparty/endian 3rdparty/support/include)
 endif()
 
 include_directories(include)
@@ -11,7 +11,7 @@ add_subdirectory(lib)
 
 # Build libsupport in standalone version.
 if (NOT BUILD_IN_METTANODE)
-    add_subdirectory(3rdparty/support/lib 3rdparty/plist)
+    add_subdirectory(3rdparty/support/lib)
 endif()
 
 if (BUILD_TESTING)
