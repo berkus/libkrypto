@@ -7,10 +7,10 @@
 // (See file LICENSE_1_0.txt or a copy at http://www.boost.org/LICENSE_1_0.txt)
 //
 #include <openssl/sha.h>
-#include "sha256_hash.h"
-#include "dsa160_key.h"
-#include "utils.h"
-#include "krypto.h"
+#include "krypto/sha256_hash.h"
+#include "krypto/dsa160_key.h"
+#include "krypto/utils.h"
+#include "krypto/krypto.h"
 #include "byte_array.h"
 #include "byte_array_wrap.h"
 #include "flurry.h"
@@ -302,7 +302,7 @@ dsa160_key::~dsa160_key()
     }
 }
 
-byte_array 
+byte_array
 dsa160_key::id() const
 {
     assert(type() != invalid);

@@ -9,8 +9,8 @@
 #define BOOST_TEST_MODULE Test_aes_128_ctr
 #include <boost/test/unit_test.hpp>
 
-#include "krypto.h"
-#include "aes_128_ctr.h"
+#include "krypto/krypto.h"
+#include "krypto/aes_128_ctr.h"
 
 BOOST_AUTO_TEST_CASE(encode_then_decode)
 {

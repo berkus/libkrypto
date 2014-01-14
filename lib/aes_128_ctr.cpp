@@ -7,8 +7,8 @@
 // (See file LICENSE_1_0.txt or a copy at http://www.boost.org/LICENSE_1_0.txt)
 //
 #include <boost/asio/buffer.hpp>
-#include "aes_128_ctr.h"
-#include "krypto.h"
+#include "krypto/aes_128_ctr.h"
+#include "krypto/krypto.h"
 
 namespace crypto {
 

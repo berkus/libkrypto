@@ -3,7 +3,7 @@
 #define BOOST_TEST_MODULE Test_krypto_primitives
 #include <boost/test/unit_test.hpp>
 
-#include "krypto.h"
+#include "krypto/krypto.h"
 
 BOOST_AUTO_TEST_CASE(random_generation)
 {
