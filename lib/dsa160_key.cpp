@@ -11,10 +11,10 @@
 #include "krypto/dsa160_key.h"
 #include "krypto/utils.h"
 #include "krypto/krypto.h"
-#include "byte_array.h"
-#include "byte_array_wrap.h"
-#include "flurry.h"
-#include "logging.h"
+#include "arsenal/byte_array.h"
+#include "arsenal/byte_array_wrap.h"
+#include "arsenal/flurry.h"
+#include "arsenal/logging.h"
 
 namespace crypto {
 

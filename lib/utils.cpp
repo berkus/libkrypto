@@ -7,7 +7,7 @@
 // (See file LICENSE_1_0.txt or a copy at http://www.boost.org/LICENSE_1_0.txt)
 //
 #include "krypto/utils.h"
-#include "byte_array.h"
+#include "arsenal/byte_array.h"
 
 namespace crypto {
 namespace utils {

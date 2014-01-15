@@ -8,8 +8,8 @@
 //
 #pragma once
 
-#include "krypto.h"
-#include "byte_array.h"
+#include "krypto/krypto.h"
+#include "arsenal/byte_array.h"
 
 namespace crypto {
 

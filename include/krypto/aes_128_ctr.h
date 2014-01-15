@@ -10,7 +10,7 @@
 
 #include <boost/tr1/array.hpp>
 #include <openssl/aes.h>
-#include "byte_array.h"
+#include "arsenal/byte_array.h"
 
 namespace crypto {
 

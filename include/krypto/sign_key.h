@@ -9,8 +9,7 @@
 #pragma once
 
 #include <memory>
-
-class byte_array;
+#include "arsenal/byte_array.h"
 
 namespace crypto {
 
@@ -22,10 +21,10 @@ class secure_hash;
  * NOTE:
  * A key should not be reused for multiple purposes; that may open up various subtle attacks.
  *
- * For instance, if you have an RSA private/public key pair, you should not both use it 
+ * For instance, if you have an RSA private/public key pair, you should not both use it
  * for encryption (encrypt with the public key, decrypt with the private key) and
- * for signing (sign with the private key, verify with the public key): pick a single purpose 
- * and use it for just that one purpose. If you need both abilities, generate two keypairs, 
+ * for signing (sign with the private key, verify with the public key): pick a single purpose
+ * and use it for just that one purpose. If you need both abilities, generate two keypairs,
  * one for signing and one for encryption/decryption.
  *
  * from http://security.stackexchange.com/questions/2202/lessons-learned

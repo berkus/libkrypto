@@ -9,7 +9,7 @@
 #pragma once
 
 #include <openssl/rsa.h>
-#include "sign_key.h"
+#include "krypto/sign_key.h"
 
 namespace crypto {
 

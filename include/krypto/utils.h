@@ -9,7 +9,7 @@
 #pragma once
 
 #include <openssl/dh.h>
-#include "flurry.h"
+#include "arsenal/flurry.h"
 
 class byte_array;
 
