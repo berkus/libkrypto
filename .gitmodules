@@ -7,6 +7,3 @@
 [submodule "3rdparty/endian"]
 	path = 3rdparty/endian
 	url = https://berkus@github.com/berkus/endian.git
-[submodule "3rdparty/arsenal"]
-	path = 3rdparty/arsenal
-	url = https://berkus@github.com/berkus/libarsenal.git
