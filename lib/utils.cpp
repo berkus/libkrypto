@@ -14,8 +14,7 @@ namespace utils {
 
 // Little helper functions for BIGNUM to byte_array conversions.
 
-BIGNUM* ba2bn(byte_array const& ba)
-{
+BIGNUM* ba2bn(byte_array const& ba) {
     return BN_bin2bn((const unsigned char*)ba.data(), ba.size(), nullptr);
 }
 
