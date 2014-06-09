@@ -1,54 +1,10 @@
-//
-// Copyright (c) 2013, Aldrin D'Souza
-// All rights reserved. 
-// http://opensource.org/licenses/BSD-2-Clause
-// 
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions are met:
-// 
-// Redistributions of source code must retain the above copyright notice, this 
-// list of conditions and the following disclaimer.
-// 
-// Redistributions in binary form must reproduce the above copyright notice,
-// this list of conditions and the following disclaimer in the documentation
-// and/or other materials provided with the distribution.
-// 
-// THIS SOFTWARE IS PROVIDED BY {{THE COPYRIGHT HOLDERS AND CONTRIBUTORS}}
-// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
-// TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-// PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL {{THE COPYRIGHT HOLDER OR
-// CONTRIBUTORS}} BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-// EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-// PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
-// OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-// WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-// OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
-// IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-// Taken entirely from
-// https://github.com/aldrin/home/blob/master/code/c++/crypto/crypto.h
-// and munged to fit.
-//
-// Requires OpenSSL 1.0.0 or later, install one from brew on OSX.
-//
-// Some crypto advices:
-// http://security.stackexchange.com/questions/2202/
-//
 #pragma once
 
 #include <stdexcept>
-
-#include <openssl/evp.h>
-#include <openssl/hmac.h>
-#include <openssl/rand.h>
-
 #include <boost/tr1/array.hpp>
 #include <boost/utility.hpp>
 #include <boost/asio/buffer.hpp>
-
-#if OPENSSL_VERSION_NUMBER < 0x10000000L
-#error OpenSSL 1.0.0 or later is required for PKCS5_PBKDF2_HMAC and EVP aes-128-gcm functions.
-#endif
+#include <sodium/randombytes.h>
 
 namespace crypto {
 
@@ -115,7 +71,7 @@ template<typename C>
 void fill_random(C &c)
 {
     internal::raw<unsigned char *> r(boost::asio::buffer(c));
-    internal::api("random bytes", RAND_bytes(r.ptr, r.len));
+    randombytes_buf(r.ptr, r.len);
 }
 
 /// Derives a key from a password and salt using PBKDF2 with HMAC-SHA256 as the chosen PRF.
