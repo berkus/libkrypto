@@ -91,11 +91,19 @@ struct raw
 } // internal namespace
 
 /// Remove sensitive data from the buffer
+/// Based on http://netbsd.2816.n7.nabble.com/Adding-memset-s-function-td43349.html
 template<typename C>
 void cleanse(C &c)
 {
+    /*
+     * memset_volatile is a volatile pointer to the memset function.
+     * You can call memset_volatile(buf, val, len) just as you would call
+     * memset(buf, val, len), but the use of a volatile pointer
+     * guarantees that the compiler will not optimise the call away.
+     */
+    void* (*volatile memset_volatile)(void *, int, size_t) = memset;
     internal::raw<void *> r(boost::asio::buffer(c));
-    OPENSSL_cleanse(r.ptr, r.len);
+    memset_volatile(r.ptr, 0, r.len);
 }
 
 /// A convenience typedef for a 128 bit block.
