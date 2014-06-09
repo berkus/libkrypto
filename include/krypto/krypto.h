@@ -109,11 +109,6 @@ void cleanse(C &c)
 /// A convenience typedef for a 128 bit block.
 typedef boost::array<unsigned char, 16> block;
 
-/// Checks if the  underlying PRNG is sufficiently seeded. In  the (exceptional) situation where
-/// this check  returns 'false', you  /must/ use the  OpenSSL seed routines  RAND_seed, RAND_add
-/// directly to add entropy to the underlying PRNG.
-inline bool prng_ok() { return RAND_status() == 1; }
-
 /// Fills the passed container with random bytes.
 /// @param c  (output) container populated with random bits
 template<typename C>
