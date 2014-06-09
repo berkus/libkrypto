@@ -7,6 +7,7 @@
 // (See file LICENSE_1_0.txt or a copy at http://www.boost.org/LICENSE_1_0.txt)
 //
 #include <boost/asio/buffer.hpp>
+#include <crypto_stream_aes128ctr.h>
 #include "krypto/aes_128_ctr.h"
 #include "krypto/krypto.h"
 
@@ -14,33 +15,20 @@ namespace crypto {
 
 aes_128_ctr::aes_128_ctr(byte_array const& key)
 {
-    int keysize = key.size() * 8;
-    assert(keysize == 128);
-    int rc = AES_set_encrypt_key((const unsigned char*)key.const_data(), keysize, &key_);
-    assert(rc == 0);
-    if (rc != 0) {
-        throw std::runtime_error("Cannot set AES-128-CTR symmetric encryption key");
-    }
+    key_ = key.as_string();
+    assert(key_.length() == crypto_stream_aes128ctr_KEYBYTES);
 }
 
 aes_128_ctr::~aes_128_ctr()
 {
-    auto wrap = boost::asio::buffer((void*)&key_, 128/8);
+    auto wrap = boost::asio::buffer((void*)&key_, crypto_stream_aes128ctr_KEYBYTES);
     crypto::cleanse(wrap); // Do not leave keys lying around.
 }
 
-byte_array aes_128_ctr::encrypt(byte_array const& in, boost::array<uint8_t,AES_BLOCK_SIZE> iv)
+byte_array aes_128_ctr::encrypt(byte_array const& in, std::string iv)
 {
-    uint8_t ecount[AES_BLOCK_SIZE]{0}; // Encryption state
-    unsigned int num{0};
-
-    byte_array out;
-    out.resize(in.size());
-
-    AES_ctr128_encrypt((const uint8_t*)in.const_data(), (uint8_t*)out.data(), in.size(),
-        &key_, iv.data(), ecount, &num);
-
-    return out;
+    assert(iv.length() == crypto_stream_aes128ctr_NONCEBYTES);
+    return crypto_stream_aes128ctr_xor(in.as_string(), iv, key_);
 }
 
 } // crypto namespace

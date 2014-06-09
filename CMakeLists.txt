@@ -7,6 +7,8 @@ if (NOT BUILD_IN_METTANODE)
 endif()
 
 include_directories(include)
+
+include_directories(../3rdparty) # for sodiumpp/sodiumpp.h
 add_subdirectory(lib)
 
 # Build libarsenal in standalone version.

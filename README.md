@@ -2,7 +2,7 @@ libkrypto
 =========
 
 Cryptographic primitives for UIA communications.
-Uses OpenSSL and crypto wrapper from Aldrin D'Souza.
 
-Licensed under BOOST license (Two-clause BSD license for crypto.h)
+Uses [libsodium](http://labs.opendns.com/2013/03/06/announcing-sodium-a-new-cryptographic-library/) and [sodiumpp](https://github.com/rubendv/sodiumpp).
 
+Licensed under BOOST license.

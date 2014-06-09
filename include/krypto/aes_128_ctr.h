@@ -8,18 +8,16 @@
 //
 #pragma once
 
-#include <boost/tr1/array.hpp>
-#include <openssl/aes.h>
 #include "arsenal/byte_array.h"
 
 namespace crypto {
 
 /**
- * AES-128 block cipher, used in stream counter mode.
+ * AES-128-CTR stream cipher.
  */
 class aes_128_ctr
 {
-    AES_KEY key_;
+    std::string key_;
 
 public:
     /**
@@ -34,14 +32,15 @@ public:
      * @param  iv      Initialization vector.
      * @return         Encrypted data.
      */
-    byte_array encrypt(byte_array const& in, boost::array<uint8_t,AES_BLOCK_SIZE> iv);
+    byte_array encrypt(byte_array const& in, std::string iv);
+
     /**
      * Decrypt in counter mode.
      * @param  in      Block of encrypted data.
      * @param  iv      Initialization vector.
      * @return         Decrypted data.
      */
-    inline byte_array decrypt(byte_array const& in, boost::array<uint8_t,AES_BLOCK_SIZE> iv) {
+    inline byte_array decrypt(byte_array const& in, std::string iv) {
         return encrypt(in, iv);
     }
 };
