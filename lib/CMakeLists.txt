@@ -4,4 +4,5 @@ add_library(krypto STATIC
     sign_key.cpp
     rsa160_key.cpp
     dsa160_key.cpp
+    stream_cipher_xsalsa20.cpp
     utils.cpp)
