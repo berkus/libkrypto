@@ -85,12 +85,13 @@ void fill_random(C &c)
 template <typename C1, typename C2, typename C3>
 void derive_key(C3 &key, const C1 &pass, const C2 &salt, int c = 10000)
 {
-    internal::raw<const char *> p(boost::asio::buffer(pass));
-    internal::raw<unsigned char *> k(boost::asio::buffer(key));
-    internal::raw<const unsigned char *> s(boost::asio::buffer(salt));
-    internal::api("key derivation",
-                  PKCS5_PBKDF2_HMAC(p.ptr, p.len, s.ptr, s.len, c, EVP_sha256(),
-                                    k.len, k.ptr));
+    // need a public-key derivation function implementation
+////// internal::raw<const char *> p(boost::asio::buffer(pass));
+////// internal::raw<unsigned char *> k(boost::asio::buffer(key));
+////// internal::raw<const unsigned char *> s(boost::asio::buffer(salt));
+////// internal::api("key derivation",
+//////               PKCS5_PBKDF2_HMAC(p.ptr, p.len, s.ptr, s.len, c, EVP_sha256(),
+//////                                 k.len, k.ptr));
 }
 
 } // crypto namespace
