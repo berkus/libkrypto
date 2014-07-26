@@ -4,6 +4,8 @@
 #include <boost/test/unit_test.hpp>
 
 #include "krypto/krypto.h"
+#include "krypto/sha256_hash.h"
+#include "krypto/sha512_hash.h"
 
 BOOST_AUTO_TEST_CASE(random_generation)
 {
@@ -26,25 +28,25 @@ BOOST_AUTO_TEST_CASE(key_generation)
     crypto::cleanse(key);                                      // clear sensitive data
 }
 
-BOOST_AUTO_TEST_CASE(message_digest)
+// BOOST_AUTO_TEST_CASE(message_digest)
+// {
+//     crypto::hash md;                                           // the hash object
+//     crypto::hash::value sha;                                   // the hash value
+//     md.update("hello world!");                                 // add data
+//     md.update("see you world!");                               // add more data
+//     md.finalize(sha);                                          // get digest value
+// }
+
+BOOST_AUTO_TEST_CASE(message_digest_sha256)
 {
-    crypto::hash md;                                           // the hash object
-    crypto::hash::value sha;                                   // the hash value
-    md.update("hello world!");                                 // add data
-    md.update("see you world!");                               // add more data
-    md.finalize(sha);                                          // get digest value
+    std::string hash = crypto::sha256::hash("hello world!");
+    BOOST_CHECK(hash == "12345");
 }
 
-BOOST_AUTO_TEST_CASE(message_authentication_code)
+BOOST_AUTO_TEST_CASE(message_digest_sha512)
 {
-    crypto::block key;                                         // the hash key
-    crypto::fill_random(key);                                  // random key will do for now
-    crypto::hash h(key);                                       // the keyed-hash object
-    crypto::hash::value mac;                                   // the mac value
-    h.update("hello world!");                                  // add data
-    h.update("see you world!");                                // more data
-    h.finalize(mac);                                           // get the MAC code
-    crypto::cleanse(key);                                      // clear sensitive data
+    std::string hash = crypto::sha512::hash("hello world!");
+    BOOST_CHECK(hash == "54321");
 }
 
 // BOOST_AUTO_TEST_CASE(message_authentication_code)
