@@ -1,25 +1,31 @@
+// UWAGA
+// Do not use crypto_sign_edwards25519sha512batch as it was a prototype,
+// see libsodium for why.
+
+#include "krypto/krypto.h"
 #include "krypto/crypto_box_sign.h"
+#include "krypto/sha256_hash.h"
 
 namespace crypto {
 
 nacl_sign_key::nacl_sign_key()
 {
-    pk = crypto_sign_edwards25519sha512batch_keypair(&sk);
+    // pk = crypto_sign_edwards25519sha512batch_keypair(&sk);
 }
 
 // public_key,flag[,private_key]
 nacl_sign_key::nacl_sign_key(byte_array const& keys)
 {
-    keys >> pk >> has_sk;
-    if (has_sk) {
-        keys >> sk;
-    }
+    // keys >> pk >> has_sk;
+    // if (has_sk) {
+    //     keys >> sk;
+    // }
 }
 
 nacl_sign_key::~nacl_sign_key()
 {
-    cleanse(sk);
-    cleanse(pk);
+    // cleanse(sk);
+    // cleanse(pk);
 }
 
 byte_array nacl_sign_key::id() const
@@ -38,13 +44,15 @@ byte_array nacl_sign_key::private_key() const {
 
 byte_array nacl_sign_key::sign(byte_array const& digest) const
 {
-    return byte_array(crypto_sign_edwards25519sha512batch_sign(digest, sk));
+    return byte_array();
+    // return byte_array(crypto_sign_edwards25519sha512batch_sign(digest, sk));
 }
 
 bool nacl_sign_key::verify(byte_array const& digest, byte_array const& signature) const
 {
     // duh!
-    crypto_sign_edwards25519sha512batch_open(signature, pk);
+    // crypto_sign_edwards25519sha512batch_open(signature, pk);
+    return false;
 }
 
 void nacl_sign_key::dump() const
