@@ -6,6 +6,8 @@
 // Distributed under the Boost Software License, Version 1.0.
 // (See file LICENSE_1_0.txt or a copy at http://www.boost.org/LICENSE_1_0.txt)
 //
+// Not used with NaCl?
+//
 #include "krypto/aes_256_cbc.h"
 #include "krypto/krypto.h"
 
