@@ -8,7 +8,7 @@
 //
 #pragma once
 
-#include <openssl/dh.h>
+// #include <openssl/dh.h>
 #include "arsenal/flurry.h"
 
 class byte_array;
@@ -17,23 +17,23 @@ namespace crypto {
 namespace utils {
 
 // Little helper functions for BIGNUM to byte_array conversions.
-BIGNUM* ba2bn(byte_array const& ba);
-byte_array bn2ba(BIGNUM const* bn);
+// BIGNUM* ba2bn(byte_array const& ba);
+// byte_array bn2ba(BIGNUM const* bn);
 
 } // utils namespace
 } // crypto namespace
 
 // Flurry serialization helpers.
-inline flurry::oarchive& operator << (flurry::oarchive& oa, BIGNUM* const& num)
-{
-    oa << crypto::utils::bn2ba(num);
-    return oa;
-}
+// inline flurry::oarchive& operator << (flurry::oarchive& oa, BIGNUM* const& num)
+// {
+//     oa << crypto::utils::bn2ba(num);
+//     return oa;
+// }
 
-inline flurry::iarchive& operator >> (flurry::iarchive& ia, BIGNUM*& num)
-{
-    byte_array ba;
-    ia >> ba;
-    num = crypto::utils::ba2bn(ba);
-    return ia;
-}
+// inline flurry::iarchive& operator >> (flurry::iarchive& ia, BIGNUM*& num)
+// {
+//     byte_array ba;
+//     ia >> ba;
+//     num = crypto::utils::ba2bn(ba);
+//     return ia;
+// }
