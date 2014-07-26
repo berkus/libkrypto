@@ -47,6 +47,18 @@ BOOST_AUTO_TEST_CASE(message_authentication_code)
     crypto::cleanse(key);                                      // clear sensitive data
 }
 
+// BOOST_AUTO_TEST_CASE(message_authentication_code)
+// {
+//     crypto::block key;                                         // the hash key
+//     crypto::fill_random(key);                                  // random key will do for now
+//     crypto::hash h(key);                                       // the keyed-hash object
+//     crypto::hash::value mac;                                   // the mac value
+//     h.update("hello world!");                                  // add data
+//     h.update("see you world!");                                // more data
+//     h.finalize(mac);                                           // get the MAC code
+//     crypto::cleanse(key);                                      // clear sensitive data
+// }
+
 BOOST_AUTO_TEST_CASE(encryption)
 {
     crypto::block iv;                                          // initialization vector
