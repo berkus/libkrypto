@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(encode_then_decode)
     {
         union {
             uint64_t words[2];
-            boost::array<uint8_t, AES_BLOCK_SIZE> bytes;
+            crypto::block bytes;
         } iv;
 
         iv.words[0] = i;
