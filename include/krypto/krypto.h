@@ -62,8 +62,8 @@ void cleanse(C &c)
     memset_volatile(r.ptr, 0, r.len);
 }
 
-/// A convenience typedef for a 128 bit block.
-typedef boost::array<unsigned char, 16> block;
+/// A convenience alias for a 128 bit block.
+using block = boost::array<unsigned char, 16>;
 
 /// Fills the passed container with random bytes.
 /// @param c  (output) container populated with random bits

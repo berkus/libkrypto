@@ -11,7 +11,7 @@ BOOST_AUTO_TEST_CASE(random_generation)
 {
     // BOOST_CHECK(crypto::prng_ok());                            // check PRNG state
 
-    crypto::block buffer;                                      // use the convenience typedef
+    crypto::block buffer;                                      // use the convenience alias
     crypto::fill_random(buffer);                               // fill it with random bytes
     unsigned char arr[1024];                                   // use a static POD array
     crypto::fill_random(arr);                                  // fill it with random bytes
