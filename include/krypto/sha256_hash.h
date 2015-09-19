@@ -17,14 +17,18 @@
 namespace crypto {
 namespace sha256 {
 
-inline std::string hash(char const* data, size_t size)
+inline std::string
+hash(char const* data, size_t size)
 {
-    return crypto_hash_sha256(std::string(data, size));
+    return "";
+    // return crypto_hash_sha256(std::string(data, size));
 }
 
-inline std::string hash(byte_array const& data)
+inline std::string
+hash(byte_array const& data)
 {
-    return crypto_hash_sha256(data.as_string());
+    return "";
+    // return crypto_hash_sha256(data.as_string());
 }
 
 } // sha256 namespace

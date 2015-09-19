@@ -10,17 +10,18 @@
 //
 #pragma once
 
-#include <openssl/aes.h>
+// #include <openssl/aes.h>
 #include "arsenal/byte_array.h"
 
 namespace crypto {
 
 class aes_256_cbc
 {
-    AES_KEY key_;
+    // AES_KEY key_;
 
 public:
-    enum class type {
+    enum class type
+    {
         encrypt,
         decrypt
     };
