@@ -8,6 +8,7 @@
 //
 #include <openssl/sha.h>
 #include <openssl/err.h>
+#include <boost/log/trivial.hpp>
 #include "krypto/sha256_hash.h"
 #include "krypto/rsa160_key.h"
 #include "krypto/utils.h"
@@ -15,7 +16,6 @@
 #include "arsenal/byte_array.h"
 #include "arsenal/byte_array_wrap.h"
 #include "arsenal/flurry.h"
-#include "arsenal/logging.h"
 
 namespace crypto {
 
@@ -128,7 +128,7 @@ rsa160_key::sign(byte_array const& digest) const
             (unsigned char*)digest.data(), SHA256_DIGEST_LENGTH,
             (unsigned char*)signature.data(), &siglen, rsa_))
     {
-        logger::fatal() << "RSA signing error - " << ERR_error_string(ERR_get_error(), nullptr);
+        BOOST_LOG_TRIVIAL(fatal) << "RSA signing error - " << ERR_error_string(ERR_get_error(), nullptr);
     }
 
     assert(siglen <= signature.size());
@@ -149,7 +149,7 @@ rsa160_key::verify(byte_array const& digest, byte_array const& signature) const
 
     if (!rc)
     {
-        logger::warning() << "RSA signature verification failed - " << ERR_error_string(ERR_get_error(), nullptr);
+        BOOST_LOG_TRIVIAL(warning) << "RSA signature verification failed - " << ERR_error_string(ERR_get_error(), nullptr);
     }
 
     return rc == 1;

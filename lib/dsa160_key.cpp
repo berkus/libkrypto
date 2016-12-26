@@ -7,6 +7,7 @@
 // (See file LICENSE_1_0.txt or a copy at http://www.boost.org/LICENSE_1_0.txt)
 //
 #include <openssl/sha.h>
+#include <boost/log/trivial.hpp>
 #include "krypto/sha256_hash.h"
 #include "krypto/dsa160_key.h"
 #include "krypto/utils.h"
@@ -14,7 +15,6 @@
 #include "arsenal/byte_array.h"
 #include "arsenal/byte_array_wrap.h"
 #include "arsenal/flurry.h"
-#include "arsenal/logging.h"
 
 namespace crypto {
 
@@ -278,7 +278,7 @@ dsa160_key::dsa160_key(int bits)
         dsa_ = get_dsa3072();
     }
     else {
-        logger::fatal() << "Can't currently produce DSA keys with more than 3072 bits";
+        BOOST_LOG_TRIVIAL(fatal) << "Can't currently produce DSA keys with more than 3072 bits";
     }
 
     assert(dsa_);
